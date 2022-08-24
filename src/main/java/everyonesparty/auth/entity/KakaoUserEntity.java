@@ -15,6 +15,7 @@ public class KakaoUserEntity {
 
     @Id
     private String kakaoId;
+
     private String email;
 
     //TODO: 추후 사업자 등록이 되고 카카오 계정에서 추가적인 정보가 필요하게 되면 추가 예정

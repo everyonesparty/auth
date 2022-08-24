@@ -16,6 +16,11 @@ import org.springframework.web.multipart.support.MissingServletRequestPartExcept
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
+/***
+ * > 객체 검증 과정에서 발생할 수 있는 에러에 관한 이야기들
+ *      > https://kapentaz.github.io/spring/Spring-Boo-Bean-Validation-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%95%8C%EA%B3%A0-%EC%93%B0%EC%9E%90/#
+ *      
+ */
 @Slf4j
 @RestControllerAdvice(basePackages="everyonesparty.auth")
 public class CommonControllerAdvice {

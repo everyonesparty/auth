@@ -2,13 +2,17 @@ package everyonesparty.auth;
 
 import everyonesparty.auth.common.exception.error.ErrorMap;
 import everyonesparty.auth.common.exception.error.RestError;
+import lombok.Builder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.reflections.Reflections;
+import org.springframework.context.annotation.Bean;
 
 import java.util.EnumSet;
 import java.util.Set;
 
+@Slf4j
 @SpringBootApplication
 public class AuthApplication {
 

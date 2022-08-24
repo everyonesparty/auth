@@ -16,6 +16,7 @@ jwt:
 
 spring:
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: "create"
   datasource:
@@ -23,3 +24,8 @@ spring:
     driver-class-name: "com.mysql.cj.jdbc.Driver"
     username: "root"
     password: "Rnjs@1q2w3e"
+
+logging:
+  level:
+    org:
+      springframework: INFO
