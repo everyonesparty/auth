@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class KakaoJwtTokenDTO {
     private String jwtToken;
-    private String kakaoUserId;
+    private String kakaoId;
 }

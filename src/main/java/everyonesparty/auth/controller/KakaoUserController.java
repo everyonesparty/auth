@@ -32,7 +32,7 @@ public class KakaoUserController {
     private final KakaoUserService kakaoUserService;
     private final JwtTokenProvider jwtTokenProvider;
 
-    @ApiOperation(value = "카카오톡 로그인", notes = "${노션 api 링크}")
+    @ApiOperation(value = "카카오 로그인", notes = "https://keen-derby-c16.notion.site/2b2c57f1826f451d854b8c3dc2979309")
     @PostMapping
     public ResponseEntity<Mono<?>> loginByAccessToken(
             @ApiParam(value = "로그인을 위한 access token 정보", required = true) @RequestBody KakaoAccessTokenDTO kakaoAccessTokenDTO){
@@ -41,7 +41,7 @@ public class KakaoUserController {
                         .map(kakaoProfileDTO ->  {
                             kakaoUserService.saveKakaoUser(kakaoProfileDTO);
                             return KakaoJwtTokenDTO.builder()
-                                    .kakaoUserId(kakaoProfileDTO.getId())
+                                    .kakaoId(kakaoProfileDTO.getId())
                                     .jwtToken(jwtTokenProvider.createToken(kakaoProfileDTO.getId(), new HashSet<UserRole>(Arrays.asList(UserRole.KAKAO_USER))))
                                     .build();
                         }));
@@ -53,7 +53,7 @@ public class KakaoUserController {
      * @param kakaoId
      * @return
      */
-    @ApiOperation(value = "카카오톡 사용자 정보 조회", notes = "${노션 api 링크}")
+    @ApiOperation(value = "카카오 사용자 정보 조회", notes = "https://keen-derby-c16.notion.site/ff991fc883b2497b9f50a0cd8d9f48d1")
     @GetMapping("/{kakaoId}")
     public ResponseEntity<?> getKakaoUserInfoByKakaoId(
             @PathVariable("kakaoId") @NotBlank @Size(min = 10, max = 10) String kakaoId){
