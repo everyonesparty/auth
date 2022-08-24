@@ -1,4 +1,4 @@
-package everyonesparty.auth.configuration;
+package everyonesparty.auth.common.configuration;
 
 import io.netty.channel.ChannelOption;
 import io.netty.handler.ssl.SslContextBuilder;
