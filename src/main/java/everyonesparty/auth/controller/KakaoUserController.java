@@ -4,9 +4,7 @@ import everyonesparty.auth.common.response.ResponseUtils;
 import everyonesparty.auth.dto.KakaoJwtTokenDTO;
 import everyonesparty.auth.jwt.JwtTokenProvider;
 import everyonesparty.auth.jwt.UserRole;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -54,6 +52,9 @@ public class KakaoUserController {
      * @return
      */
     @ApiOperation(value = "카카오 사용자 정보 조회", notes = "https://keen-derby-c16.notion.site/ff991fc883b2497b9f50a0cd8d9f48d1")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "카카오 로그인 성공 후 access_token", required = true, dataType = "String", paramType = "header")
+    })
     @GetMapping("/{kakaoId}")
     public ResponseEntity<?> getKakaoUserInfoByKakaoId(
             @PathVariable("kakaoId") @NotBlank @Size(min = 10, max = 10) String kakaoId){
