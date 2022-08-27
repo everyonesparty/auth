@@ -48,6 +48,7 @@ public class KakaoUserService {
                 .doOnNext(this::validateKakaoProfileDTO);
     }
 
+
     public void saveKakaoUser(KakaoProfileDTO kakaoProfileDTO){
         kakaoUserRepository.save(
                 KakaoUserEntity.builder()
