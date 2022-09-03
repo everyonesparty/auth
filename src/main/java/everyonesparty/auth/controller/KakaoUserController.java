@@ -41,7 +41,7 @@ public class KakaoUserController {
                                 .kakaoId(kakaoProfileDTO.getId())
                                 .email(kakaoProfileDTO.getKakao_account().getEmail()).build())
                         .map(kakaoUserDTO ->  {
-                            kakaoUserService.saveKakaoUser(kakaoUserDTO);
+//                            kakaoUserService.saveKakaoUser(kakaoUserDTO);
                             return KakaoJwtTokenDTO.builder()
                                     .kakaoId(kakaoUserDTO.getKakaoId())
                                     .jwtToken(jwtTokenProvider.createToken(kakaoUserDTO.getKakaoId(), new HashSet<UserRole>(Arrays.asList(UserRole.KAKAO_USER))))
