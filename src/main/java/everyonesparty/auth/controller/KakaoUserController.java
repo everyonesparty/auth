@@ -32,7 +32,7 @@ public class KakaoUserController {
     private final JwtTokenProvider jwtTokenProvider;
 
     @ApiOperation(value = "카카오 로그인(미 사용)", notes = "https://keen-derby-c16.notion.site/2b2c57f1826f451d854b8c3dc2979309")
-    @PostMapping
+    @PostMapping("/test")
     public ResponseEntity<Mono<?>> loginByAccessToken(
             @ApiParam(value = "로그인을 위한 access token 정보", required = true) @RequestBody KakaoAccessTokenDTO kakaoAccessTokenDTO){
         return ResponseUtils.out(
@@ -51,7 +51,7 @@ public class KakaoUserController {
 
     @ApiOperation(value = "카카오 정보 등록", notes = "미작성")
     @PostMapping
-    public ResponseEntity<Mono<?>> registerKakaoUserInfo(
+    public ResponseEntity<?> registerKakaoUserInfo(
             @ApiParam(value = "카카오 측에서 받은 정보", required = true) @RequestBody KakaoUserDTO kakaoUserDTO){
         kakaoUserService.saveKakaoUser(kakaoUserDTO);
         return ResponseUtils.ok();
