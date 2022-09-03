@@ -49,7 +49,7 @@ public class KakaoUserController {
                         }));
     }
 
-    @ApiOperation(value = "카카오 정보 등록", notes = "미작성")
+    @ApiOperation(value = "카카오 정보 등록", notes = "https://keen-derby-c16.notion.site/cea698a991464699a98dbcd7ed7dcfeb")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "카카오 로그인 성공 후 jwt token", required = true, dataType = "String", paramType = "header")
     })
