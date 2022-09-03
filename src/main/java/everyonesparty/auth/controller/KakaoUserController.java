@@ -30,20 +30,22 @@ public class KakaoUserController {
     private final KakaoUserService kakaoUserService;
     private final JwtTokenProvider jwtTokenProvider;
 
-    @ApiOperation(value = "카카오 로그인", notes = "https://keen-derby-c16.notion.site/2b2c57f1826f451d854b8c3dc2979309")
-    @PostMapping
-    public ResponseEntity<Mono<?>> loginByAccessToken(
-            @ApiParam(value = "로그인을 위한 access token 정보", required = true) @RequestBody KakaoAccessTokenDTO kakaoAccessTokenDTO){
-        return ResponseUtils.out(
-                kakaoUserService.getKakaoProfileDTO(kakaoAccessTokenDTO.getAccessToken())
-                        .map(kakaoProfileDTO ->  {
-                            kakaoUserService.saveKakaoUser(kakaoProfileDTO);
-                            return KakaoJwtTokenDTO.builder()
-                                    .kakaoId(kakaoProfileDTO.getId())
-                                    .jwtToken(jwtTokenProvider.createToken(kakaoProfileDTO.getId(), new HashSet<UserRole>(Arrays.asList(UserRole.KAKAO_USER))))
-                                    .build();
-                        }));
-    }
+//    @ApiOperation(value = "카카오 로그인", notes = "https://keen-derby-c16.notion.site/2b2c57f1826f451d854b8c3dc2979309")
+//    @PostMapping
+//    public ResponseEntity<Mono<?>> loginByAccessToken(
+//            @ApiParam(value = "로그인을 위한 access token 정보", required = true) @RequestBody KakaoAccessTokenDTO kakaoAccessTokenDTO){
+//        return ResponseUtils.out(
+//                kakaoUserService.getKakaoProfileDTO(kakaoAccessTokenDTO.getAccessToken())
+//                        .map(kakaoProfileDTO ->  {
+//                            kakaoUserService.saveKakaoUser(kakaoProfileDTO);
+//                            return KakaoJwtTokenDTO.builder()
+//                                    .kakaoId(kakaoProfileDTO.getId())
+//                                    .jwtToken(jwtTokenProvider.createToken(kakaoProfileDTO.getId(), new HashSet<UserRole>(Arrays.asList(UserRole.KAKAO_USER))))
+//                                    .build();
+//                        }));
+//    }
+
+
 
     /***
      * > TODO: jwt token 이 요구되는 api 이지만 여기서 검증하지 않고 앞단의 api-gateway 에서 검증하도록 할 것임
