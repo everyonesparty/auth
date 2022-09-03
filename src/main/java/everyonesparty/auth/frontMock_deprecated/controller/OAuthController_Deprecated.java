@@ -13,12 +13,12 @@ import everyonesparty.auth.dto.KakaoAccessTokenDTO;
 @RequestMapping("/oauth")
 public class OAuthController_Deprecated {
 
-    private final OAuthService_Deprecated oAuthService;
-
-    @GetMapping("/kakao/redirect")
-    public Mono<KakaoAccessTokenDTO> kakaoCallback(@RequestParam String code) {
-        log.info(code);
-        return oAuthService.getKakaoAccessToken(code);
-    }
+//    private final OAuthService_Deprecated oAuthService;
+//
+//    @GetMapping("/kakao/redirect")
+//    public Mono<KakaoAccessTokenDTO> kakaoCallback(@RequestParam String code) {
+//        log.info(code);
+//        return oAuthService.getKakaoAccessToken(code);
+//    }
 
 }
