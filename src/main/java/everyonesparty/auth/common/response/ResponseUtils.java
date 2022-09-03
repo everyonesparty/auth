@@ -5,6 +5,10 @@ import org.springframework.http.ResponseEntity;
 
 public class ResponseUtils {
 
+    public static ResponseEntity ok(){
+        return ResponseEntity.ok().build();
+    }
+
     /***
      * data만 들어오면 성공 응답
      * @param data

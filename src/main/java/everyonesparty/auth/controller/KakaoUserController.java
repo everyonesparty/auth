@@ -2,6 +2,7 @@ package everyonesparty.auth.controller;
 
 import everyonesparty.auth.common.response.ResponseUtils;
 import everyonesparty.auth.dto.KakaoJwtTokenDTO;
+import everyonesparty.auth.dto.KakaoUserDTO;
 import everyonesparty.auth.jwt.JwtTokenProvider;
 import everyonesparty.auth.jwt.UserRole;
 import io.swagger.annotations.*;
@@ -30,26 +31,34 @@ public class KakaoUserController {
     private final KakaoUserService kakaoUserService;
     private final JwtTokenProvider jwtTokenProvider;
 
-//    @ApiOperation(value = "카카오 로그인", notes = "https://keen-derby-c16.notion.site/2b2c57f1826f451d854b8c3dc2979309")
-//    @PostMapping
-//    public ResponseEntity<Mono<?>> loginByAccessToken(
-//            @ApiParam(value = "로그인을 위한 access token 정보", required = true) @RequestBody KakaoAccessTokenDTO kakaoAccessTokenDTO){
-//        return ResponseUtils.out(
-//                kakaoUserService.getKakaoProfileDTO(kakaoAccessTokenDTO.getAccessToken())
-//                        .map(kakaoProfileDTO ->  {
-//                            kakaoUserService.saveKakaoUser(kakaoProfileDTO);
-//                            return KakaoJwtTokenDTO.builder()
-//                                    .kakaoId(kakaoProfileDTO.getId())
-//                                    .jwtToken(jwtTokenProvider.createToken(kakaoProfileDTO.getId(), new HashSet<UserRole>(Arrays.asList(UserRole.KAKAO_USER))))
-//                                    .build();
-//                        }));
-//    }
+    @ApiOperation(value = "카카오 로그인(미 사용)", notes = "https://keen-derby-c16.notion.site/2b2c57f1826f451d854b8c3dc2979309")
+    @PostMapping
+    public ResponseEntity<Mono<?>> loginByAccessToken(
+            @ApiParam(value = "로그인을 위한 access token 정보", required = true) @RequestBody KakaoAccessTokenDTO kakaoAccessTokenDTO){
+        return ResponseUtils.out(
+                kakaoUserService.getKakaoProfileDTO(kakaoAccessTokenDTO.getAccessToken())
+                        .map(kakaoProfileDTO -> KakaoUserDTO.builder()
+                                .kakaoId(kakaoProfileDTO.getId())
+                                .email(kakaoProfileDTO.getKakao_account().getEmail()).build())
+                        .map(kakaoUserDTO ->  {
+                            kakaoUserService.saveKakaoUser(kakaoUserDTO);
+                            return KakaoJwtTokenDTO.builder()
+                                    .kakaoId(kakaoUserDTO.getKakaoId())
+                                    .jwtToken(jwtTokenProvider.createToken(kakaoUserDTO.getKakaoId(), new HashSet<UserRole>(Arrays.asList(UserRole.KAKAO_USER))))
+                                    .build();
+                        }));
+    }
 
-
+    @ApiOperation(value = "카카오 정보 등록", notes = "미작성")
+    @PostMapping
+    public ResponseEntity<Mono<?>> registerKakaoUserInfo(
+            @ApiParam(value = "카카오 측에서 받은 정보", required = true) @RequestBody KakaoUserDTO kakaoUserDTO){
+        kakaoUserService.saveKakaoUser(kakaoUserDTO);
+        return ResponseUtils.ok();
+    }
 
     /***
-     * > TODO: jwt token 이 요구되는 api 이지만 여기서 검증하지 않고 앞단의 api-gateway 에서 검증하도록 할 것임
-     *      > 이 TODO 는 api-gateway 작업이 끝나면 지우도록 함
+     *
      * @param kakaoId
      * @return
      */

@@ -13,7 +13,7 @@ class KakaoProfileDTOTest {
     private static Validator validator = new CustomCollectionValidator();
 
     @Test
-    void validation() {
+    void success_case() {
 
         //given
         KakaoProfileDTO kakaoProfileDTO = KakaoProfileDTO.builder()

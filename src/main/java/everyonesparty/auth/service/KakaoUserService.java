@@ -48,12 +48,15 @@ public class KakaoUserService {
                 .doOnNext(this::validateKakaoProfileDTO);
     }
 
-
-    public void saveKakaoUser(KakaoProfileDTO kakaoProfileDTO){
+    /***
+     * >
+     * @param kakaoUserDTO
+     */
+    public void saveKakaoUser(KakaoUserDTO kakaoUserDTO){
         kakaoUserRepository.save(
                 KakaoUserEntity.builder()
-                        .kakaoId(kakaoProfileDTO.getId())
-                        .email(kakaoProfileDTO.getKakao_account().getEmail())
+                        .kakaoId(kakaoUserDTO.getKakaoId())
+                        .email(kakaoUserDTO.getEmail())
                         .build()
         );
     }
