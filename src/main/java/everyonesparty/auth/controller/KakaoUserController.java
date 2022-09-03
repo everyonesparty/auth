@@ -50,6 +50,9 @@ public class KakaoUserController {
     }
 
     @ApiOperation(value = "카카오 정보 등록", notes = "미작성")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "카카오 로그인 성공 후 jwt token", required = true, dataType = "String", paramType = "header")
+    })
     @PostMapping
     public ResponseEntity<?> registerKakaoUserInfo(
             @ApiParam(value = "카카오 측에서 받은 정보", required = true) @RequestBody KakaoUserDTO kakaoUserDTO){
@@ -64,7 +67,7 @@ public class KakaoUserController {
      */
     @ApiOperation(value = "카카오 사용자 정보 조회", notes = "https://keen-derby-c16.notion.site/ff991fc883b2497b9f50a0cd8d9f48d1")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "Authorization", value = "카카오 로그인 성공 후 access_token", required = true, dataType = "String", paramType = "header")
+            @ApiImplicitParam(name = "Authorization", value = "카카오 로그인 성공 후 jwt token", required = true, dataType = "String", paramType = "header")
     })
     @GetMapping("/{kakaoId}")
     public ResponseEntity<?> getKakaoUserInfoByKakaoId(
