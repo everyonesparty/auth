@@ -1,4 +1,4 @@
-package everyonesparty.auth.frontMock_deprecated.service;
+package everyonesparty.auth.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,7 @@ import everyonesparty.auth.dto.KakaoAccessTokenDTO;
 @RequiredArgsConstructor
 @Slf4j
 @Deprecated
-public class OAuthService {
+public class KakaoOAuthService {
 
     private final WebClient webClient;
 

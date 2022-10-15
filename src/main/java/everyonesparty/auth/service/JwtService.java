@@ -1,5 +1,6 @@
-package everyonesparty.auth.jwt;
+package everyonesparty.auth.service;
 
+import everyonesparty.auth.dto.UserRole;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -22,7 +23,7 @@ import java.util.Set;
  * **/
 @RequiredArgsConstructor
 @Component
-public class JwtTokenProvider {
+public class JwtService {
 
     @Value("${jwt.secret}")
     private String secretKey;
