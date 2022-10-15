@@ -31,6 +31,7 @@ public class KakaoUserController {
     private final KakaoUserService kakaoUserService;
     private final JwtTokenProvider jwtTokenProvider;
 
+    @Deprecated
     @ApiOperation(value = "카카오 로그인(미 사용)", notes = "https://keen-derby-c16.notion.site/2b2c57f1826f451d854b8c3dc2979309")
     @PostMapping("/test")
     public ResponseEntity<Mono<?>> loginByAccessToken(
