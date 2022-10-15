@@ -13,7 +13,8 @@ import everyonesparty.auth.dto.KakaoAccessTokenDTO;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class OAuthService_Deprecated {
+@Deprecated
+public class OAuthService {
 
     private final WebClient webClient;
 
