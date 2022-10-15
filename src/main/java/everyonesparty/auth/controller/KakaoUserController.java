@@ -1,17 +1,16 @@
 package everyonesparty.auth.controller;
 
 import everyonesparty.auth.common.response.ResponseUtils;
-import everyonesparty.auth.dto.KakaoJwtTokenDTO;
+import everyonesparty.auth.dto.deprecated.KakaoJwtTokenDTO;
 import everyonesparty.auth.dto.KakaoUserDTO;
-import everyonesparty.auth.jwt.JwtTokenProvider;
-import everyonesparty.auth.jwt.UserRole;
+import everyonesparty.auth.service.JwtService;
+import everyonesparty.auth.dto.UserRole;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import everyonesparty.auth.dto.KakaoAccessTokenDTO;
+import everyonesparty.auth.dto.deprecated.KakaoAccessTokenDTO;
 import everyonesparty.auth.service.KakaoUserService;
 import reactor.core.publisher.Mono;
 
@@ -29,8 +28,9 @@ import java.util.HashSet;
 public class KakaoUserController {
 
     private final KakaoUserService kakaoUserService;
-    private final JwtTokenProvider jwtTokenProvider;
+    private final JwtService jwtService;
 
+    @Deprecated
     @ApiOperation(value = "카카오 로그인(미 사용)", notes = "https://keen-derby-c16.notion.site/2b2c57f1826f451d854b8c3dc2979309")
     @PostMapping("/test")
     public ResponseEntity<Mono<?>> loginByAccessToken(
@@ -44,7 +44,7 @@ public class KakaoUserController {
 //                            kakaoUserService.saveKakaoUser(kakaoUserDTO);
                             return KakaoJwtTokenDTO.builder()
                                     .kakaoId(kakaoUserDTO.getKakaoId())
-                                    .jwtToken(jwtTokenProvider.createToken(kakaoUserDTO.getKakaoId(), new HashSet<UserRole>(Arrays.asList(UserRole.KAKAO_USER))))
+                                    .jwtToken(jwtService.createToken(kakaoUserDTO.getKakaoId(), new HashSet<UserRole>(Arrays.asList(UserRole.KAKAO_USER))))
                                     .build();
                         }));
     }

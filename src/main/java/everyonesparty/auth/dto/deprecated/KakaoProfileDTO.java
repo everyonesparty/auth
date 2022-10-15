@@ -1,4 +1,4 @@
-package everyonesparty.auth.dto;
+package everyonesparty.auth.dto.deprecated;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +20,7 @@ import javax.validation.constraints.Size;
  *  > 응답 스팩
  *      > https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api#req-user-info
  */
+@Deprecated
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

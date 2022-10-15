@@ -1,17 +1,15 @@
 package everyonesparty.auth.controller;
 
 import everyonesparty.auth.dto.KakaoUserDTO;
-import everyonesparty.auth.jwt.JwtTokenProvider;
+import everyonesparty.auth.service.JwtService;
 import everyonesparty.auth.service.KakaoUserService;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(KakaoUserController.class)
@@ -25,7 +23,7 @@ class KakaoUserControllerTest {
     private KakaoUserService kakaoUserService;
 
     @MockBean
-    private JwtTokenProvider jwtTokenProvider;
+    private JwtService jwtService;
 
     static String url = "/api/v1/login/kakao";
 

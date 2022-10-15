@@ -1,24 +1,25 @@
-package everyonesparty.auth.frontMock_deprecated.controller;
+package everyonesparty.auth.controller.deprecated;
 
-import everyonesparty.auth.frontMock_deprecated.service.OAuthService_Deprecated;
+import everyonesparty.auth.service.deprecated.KakaoOAuthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
-import everyonesparty.auth.dto.KakaoAccessTokenDTO;
+import everyonesparty.auth.dto.deprecated.KakaoAccessTokenDTO;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/oauth")
-public class OAuthController_Deprecated {
+@Deprecated
+public class OAuthController {
 
-    private final OAuthService_Deprecated oAuthService;
+    private final KakaoOAuthService kakaoOAuthService;
 
     @GetMapping("/kakao/redirect")
     public Mono<KakaoAccessTokenDTO> kakaoCallback(@RequestParam String code) {
         log.info(code);
-        return oAuthService.getKakaoAccessToken(code);
+        return kakaoOAuthService.getKakaoAccessToken(code);
     }
 
 }
