@@ -1,7 +1,7 @@
 package everyonesparty.auth.controller;
 
 import everyonesparty.auth.common.response.ResponseUtils;
-import everyonesparty.auth.dto.KakaoJwtTokenDTO;
+import everyonesparty.auth.dto.deprecated.KakaoJwtTokenDTO;
 import everyonesparty.auth.dto.KakaoUserDTO;
 import everyonesparty.auth.service.JwtService;
 import everyonesparty.auth.dto.UserRole;
@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import everyonesparty.auth.dto.KakaoAccessTokenDTO;
+import everyonesparty.auth.dto.deprecated.KakaoAccessTokenDTO;
 import everyonesparty.auth.service.KakaoUserService;
 import reactor.core.publisher.Mono;
 

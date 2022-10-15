@@ -2,7 +2,7 @@ package everyonesparty.auth.service;
 
 import everyonesparty.auth.common.exception.LogicalRuntimeException;
 import everyonesparty.auth.common.exception.error.CommonError;
-import everyonesparty.auth.dto.KakaoProfileDTO;
+import everyonesparty.auth.dto.deprecated.KakaoProfileDTO;
 import everyonesparty.auth.dto.KakaoUserDTO;
 import everyonesparty.auth.entity.KakaoUserEntity;
 import everyonesparty.auth.repository.KakaoUserRepository;
@@ -34,6 +34,7 @@ public class KakaoUserService {
     private final KakaoUserRepository kakaoUserRepository;
     private final Validator validator;
 
+    @Deprecated
     public Mono<KakaoProfileDTO> getKakaoProfileDTO(String accessToken){
         return webClient.mutate().baseUrl(baseUrl).build()
                 .post()
@@ -46,6 +47,16 @@ public class KakaoUserService {
                     throw new LogicalRuntimeException(CommonError.INTERNAL_SERVER_ERROR);
                 })
                 .doOnNext(this::validateKakaoProfileDTO);
+    }
+
+    @Deprecated
+    private void validateKakaoProfileDTO(KakaoProfileDTO kakaoProfileDTO){
+        Errors errors = new BindException(kakaoProfileDTO, "dummystr");
+        validator.validate(kakaoProfileDTO, errors);
+        if(errors.hasErrors()){
+            log.error("[kakao 통신 오류] KakaoProfileDTO 의 스팩이 맞지 않습니다. KakaoProfileDTO: {}", kakaoProfileDTO.toString());
+            throw new LogicalRuntimeException(CommonError.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /***
@@ -66,16 +77,5 @@ public class KakaoUserService {
         return kakaoUserRepository.findByKakaoId(kakaoId)
                 .map(kakaoUserEntity -> kakaoUserEntity.toDTO())
                 .orElseThrow(() -> new LogicalRuntimeException(CommonError.INTERNAL_SERVER_ERROR));
-    }
-
-
-
-    private void validateKakaoProfileDTO(KakaoProfileDTO kakaoProfileDTO){
-        Errors errors = new BindException(kakaoProfileDTO, "dummystr");
-        validator.validate(kakaoProfileDTO, errors);
-        if(errors.hasErrors()){
-            log.error("[kakao 통신 오류] KakaoProfileDTO 의 스팩이 맞지 않습니다. KakaoProfileDTO: {}", kakaoProfileDTO.toString());
-            throw new LogicalRuntimeException(CommonError.INTERNAL_SERVER_ERROR);
-        }
     }
 }

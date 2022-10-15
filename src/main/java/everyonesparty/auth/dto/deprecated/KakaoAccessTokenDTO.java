@@ -1,4 +1,4 @@
-package everyonesparty.auth.dto;
+package everyonesparty.auth.dto.deprecated;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 
-
+@Deprecated
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

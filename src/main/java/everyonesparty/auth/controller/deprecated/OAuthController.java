@@ -1,11 +1,11 @@
-package everyonesparty.auth.controller;
+package everyonesparty.auth.controller.deprecated;
 
-import everyonesparty.auth.service.KakaoOAuthService;
+import everyonesparty.auth.service.deprecated.KakaoOAuthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
-import everyonesparty.auth.dto.KakaoAccessTokenDTO;
+import everyonesparty.auth.dto.deprecated.KakaoAccessTokenDTO;
 
 @Slf4j
 @RestController

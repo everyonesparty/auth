@@ -5,10 +5,10 @@ import org.springframework.http.HttpStatus;
 
 public interface RestError {
 
-    public ResponseError toResponseError();
+    ResponseError toResponseError();
 
-    public HttpStatus getHttpStatus();
+    HttpStatus getHttpStatus();
 
-    public String getErrorMsg();
+    String getErrorMsg();
 
 }

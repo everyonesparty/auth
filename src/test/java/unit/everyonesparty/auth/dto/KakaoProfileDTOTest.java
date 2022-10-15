@@ -1,6 +1,7 @@
 package everyonesparty.auth.dto;
 
 import everyonesparty.auth.common.validation.CustomCollectionValidator;
+import everyonesparty.auth.dto.deprecated.KakaoProfileDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
