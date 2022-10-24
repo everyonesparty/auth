@@ -70,7 +70,7 @@ public class KakaoUserController {
             @ApiImplicitParam(name = "Authorization", value = "카카오 로그인 성공 후 jwt token", required = true, dataType = "String", paramType = "header")
     })
     @GetMapping("/{kakaoId}")
-    public ResponseEntity<?> getKakaoUserInfoByKakaoId(
+    public ResponseEntity<KakaoUserDTO> getKakaoUserInfoByKakaoId(
             @PathVariable("kakaoId") @NotBlank @Size(min = 10, max = 10) String kakaoId){
         return ResponseUtils.out(kakaoUserService.findKakaoUserByKakaoId(kakaoId));
     }
